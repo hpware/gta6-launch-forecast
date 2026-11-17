@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/gta6-twitch-ccu-forecast-01/hpware/gta6-launch-forecast/rank.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
 [![reward](https://make.fun/badge/gta6-twitch-ccu-forecast-01/hpware/gta6-launch-forecast/reward.svg)](https://make.fun/bounty/gta6-twitch-ccu-forecast-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-twitch-ccu-forecast-01)
 
-Forecasts each hour of a game launch day's Twitch category viewers from the launch's first-hour print and the launch-day curves of past big releases, with quantiles taken from how far those past launches actually spread.
+Forecasts each hour of GTA VI's launch day on Twitch by scaling the day-shape of past big launches to the case's first-hour count, with the spread those launches really show.
 
 ## Run it
 
