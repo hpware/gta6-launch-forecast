@@ -31,10 +31,8 @@ Z = [-1.6448536269514722, -0.6744897501960817, 0.0, 0.6744897501960817, 1.644853
 
 HOURS = list(range(2, 25))
 # A comparable's first hour must be a real launch hour: small categories are
-# sampled sparsely, their ratios are noise, and a launch whose first hour holds
-# only a sliver of its day (an unlock later in the UTC day) bends every ratio.
+# sampled sparsely and their ratios are noise.
 MIN_FIRST_HOUR = 10_000
-FIRST_HOUR_SHARE = 0.15
 # Ratios past this are a launch that did not really start in hour 1.
 RATIO_CAP = 20.0
 # How far, in log viewers, a comparable's weight reaches when the line is fitted.
@@ -45,7 +43,7 @@ MIN_WEIGHT = 0.05
 MEAN_WEIGHT = 0.15
 # A floor under the log spread, and a small widening for one launch's own draw.
 FLOOR = 0.08
-SPREAD = 1.0
+SPREAD = 0.9
 # Extra log spread for every log viewer this launch is past the largest comparable.
 OUTSIDE = 0.05
 
@@ -78,11 +76,6 @@ def usable(comparable, name):
     curve = hourly_curve(comparable)
     first = curve.get(1)
     if not first or first < MIN_FIRST_HOUR:
-        return None
-    # Hour 1 has to be a real launch hour, not the quiet before a later unlock:
-    # a launch whose first hour is a sliver of its day bends every ratio.
-    peak = max((viewers for hour, viewers in curve.items() if hour >= 1), default=0.0)
-    if first < FIRST_HOUR_SHARE * peak:
         return None
     if sum(1 for hour in HOURS if hour in curve) < 20:
         return None
